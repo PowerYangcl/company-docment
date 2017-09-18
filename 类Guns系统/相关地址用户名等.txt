@@ -1,0 +1,24 @@
+1.官网后台管理员账号密码 www.evdingding.com
+
+账号：admin  密码：35sDes597nDs1s
+
+2.叮叮运管系统 
+---线上测试地址：http://test.pdhz-dddc.com:8085/dingding-manager/   账号密码：admin     123456
+---线上生产地址：http://manager.pdhz-dddc.cn:8085/dingding-manager/    账号密码：请联系相关负责人索要
+
+3.后台运管系统图片地址拼接前缀
+---生产环境：http://ddride-server-image.oss-cn-shanghai.aliyuncs.com/14985475693350985.jpg(图片名称)
+---测试环境: http://ddride-testserver-image.oss-cn-shanghai.aliyuncs.com/14969956392904572.jpg
+
+4.访问web页面（或者访问web页面接口地址）
+---生产环境：http://www.pdhz-dddc.cn/dingding-web/拼上项目名或者接口名
+---测试环境: http://test.pdhz-dddc.com/dingding-web/拼上项目名或者接口名
+
+5.web端跳转到叮叮约车app下载页(比如点击某个按钮跳转到app下载入口地址，加载下面的url即可)
+ios 乘客端： https://itunes.apple.com/cn/app/ding-ding-da-che/id903333873?l=en&mt=8
+    司机端： https://itunes.apple.com/cn/app/ding-ding-da-che/id1146668977?l=en&mt=8
+android 乘客端: http://a.app.qq.com/o/simple.jsp?pkgname=com.ddtech.dddc
+        司机端: http://a.app.qq.com/o/simple.jsp?pkgname=com.ddtech.ddzcd
+
+6.阿里云OSS对象存储地址
+http://signin.aliyun.com/1767569522724218/login.htm
