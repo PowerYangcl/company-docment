@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="datamapper">
+ 	<!-- 用户注册信息 -->
+    <select id="getData1" parameterType="int"  resultType="beanToMessage.AccountMessage">
+         select 
+		t.tellphone as B040002, -- 账号
+		t.login_userName as B040026,  -- 用户名 
+		t.passenger_id as B040003, -- 用户内部ID
+		t.tellphone as B020005,-- 手机号
+		t.userAvatar as X900015,-- 用户头像
+		t.login_userPwd as B040005,-- 用户登录密码
+		t.nickName as B040004, -- 昵称
+		t.age as B010015, -- 年龄
+		t.sex as B010011, -- 性别 
+		UNIX_TIMESTAMP(t.login_createTime) as G020026, -- 注册日期
+		t.login_cityName as B030002,--  注册城市
+		t.equipment_phone_ip as F020001, -- 注册IP地址
+		t.equipment_phone_port as F020006, -- 端口号
+		t.homeAddress as B020008, -- 联系地址
+		t.currentCity as B030011, -- 居住地
+		t.origin as B010026, -- 籍贯
+		t.occupation as B030024, -- 职业
+		REPLACE(t.equipment_phone_mac,':','') as C040002,-- 注册终端MAC地址
+		t.equipment_phone_hardware_num as C050001,-- 移动终端 
+		t.login_longitude as F010001, -- 经度
+		t.login_latitude as F010002, -- 维度
+		'02' as H230001,-- 用户类型 乘客
+		'1' as H010003, -- 新增
+		floor(t.gmt_update/1000) as I010005 -- 动作时间
+		from passenger_login as t where t.tellphone is not null
+    </select>
+    
+    <!-- 租约车订单信息 -->
+    <select id="getData2" resultType="beanToMessage.VehicleBookMessage">
+    	select 
+		t1.tellphone as B040002,-- 账号
+		t1.passenger_id as B040003, -- 用户内部ID
+		t.rider_name as H230002,-- 联系人姓名
+		t.rider_mobile as H230003,-- 联系人手机号
+		t.vip_order_id as H090001,-- 订单号
+		UNIX_TIMESTAMP(t.order_time) as H230007, -- 下单时间
+		t1.tellphone as B020005, -- 下单客户端手机号
+		'04' as H230012, -- 租约车类型
+		UNIX_TIMESTAMP(t.estimate_aborad_time) as H230015, -- 预约上车时间
+		t.start_address as H230016,-- 预约上车详细地址
+		t.start_longitude as H230017, -- 预约上车经度
+		t.start_latitude as H230018, -- 预约上车维度
+		t.destination_address as H230019,-- 预约下车地址 
+		t.destination_longitude as H230020, -- 预约下车经度
+		t.destination_latitude as H230021, -- 预约下车维度
+		t2.name as H230022, -- 预约上车城市
+		UNIX_TIMESTAMP(t.estimate_flight_takeoff_time) as H010015, -- 航班起飞时间
+		UNIX_TIMESTAMP(t.recive_order_time) as H230035, -- 接单时间
+		t.driver_current_address as H230036, -- 接单位置详细地址
+		t.driver_current_longitude as H230037,-- 接单经度
+		t.driver_current_latitude as   H230038, -- 接单维度
+		CONCAT(t.vehicleModel,t.vehicleType,t.vehicleColor) as C030015,-- 车辆基本信息
+		t.driver_id as H230040, -- 司机内部ID
+		t.derver_mobile as H230039, --  司机用户账号
+		t.derver_name as H230041, --  司机姓名
+		t.derver_mobile as H230044, -- 司机手机号
+		t.driver_card_number as H230043, -- 司机证件号
+		UNIX_TIMESTAMP(t.confirm_abroad_time) as H230045,-- 上车时间
+		t.abroad_longitude as F010010, -- 上车经度
+		t.abroad_latitude as F010011, -- 上车维度
+		UNIX_TIMESTAMP(t.confirm_arrive_time) as H230046,-- 下车时间
+		t.debus_longitude as F010012, -- 下车经度
+		t.debus_latitude as F010013,-- 下车维度
+		t.settle_order_fee as H230056, -- 实际用车费用 
+		UNIX_TIMESTAMP(now()) as H230010, -- 动作时间
+		'52' as H010003 -- 动作类型 52下单
+		from orderinfo_statistics t  left join passenger_login t1 on t.passenger_id = t1.passenger_id left join dd_city_dict t2 on t.publish_city_id = t2.id
+    	where t1.tellphone is not null and t1.passenger_id is not null and t.recive_order_time is not null;
+    </select>
+    
+    <!-- 车辆信息 -->
+    <select id="getData3" resultType="beanToMessage.VehicleInfoMessage">
+    	select 
+		t.uvId as C030009, -- 车辆ID
+		t.lisencePlate as C030002, -- 车牌号
+		t.engine_id as C030004, -- 发动机号
+		t.vehicleModel as C010002, -- 车辆品牌
+		t.vehicleType as C010003, -- 车辆型号
+		t.vehicleColor as C010004, -- 车辆颜色
+		t.xszVehicleType as C030010, -- 车辆类型 
+		t.vehicleImage as C030011, -- 车辆谍照
+		t.vehicleOperatingPermit as C030012, -- 车辆运营证件号码
+		t.vehicleInsuranceImg as C030013, -- 车辆保单照片
+		t.xszCopyImage as C030014,-- 车辆行驶证照片
+		t.address as B030002, -- 车辆所在城市
+		'1' as H010003,
+		floor(t.gmt_update/1000) as  I010005 -- 动作时间
+		from vehicle_base_info t
+    </select>
+    
+    <!-- 车辆轨迹信息 -->
+    <select id="getData4" resultType="beanToMessage.VehicletrackMessage">
+    	select 
+		t.order_id as H090001, -- 订单号
+		t1.login_aliasId as H230039,-- 司机用户账号
+		t.driverId as H230040, --  司机用户内部ID
+		t.car_id as C030009, -- 车辆ID
+		floor(t.gmtUpdate/1000) as H230059, -- 当前时间
+		t.longitude as H230061, -- 当前位置经度
+		t.latitude as H230062, --  当前位置维度
+		'01' as H230063 --  轨迹类型 01 司机打点
+		from driver_position t LEFT JOIN driver_login t1 on t.driverId=t1.login_driver_id limit 10;
+    </select>
+    
+    <!-- 司机车辆关联信息 -->
+    <select id="getData5" resultType="beanToMessage.UserVehiclerelateinfoMessage">
+    	select 
+		t1.login_aliasId as B040002, -- 账号
+		t.userId as B040003,-- 用户内部Id
+		t.uvId as C030009, -- 车辆id
+		'1' as H010003, -- 新增
+		floor(t.gmt_update/1000) as I010005 -- 动作时间
+		from vehicle_base_info t left join driver_login t1 on t.userId = t1.login_driver_id
+    </select>
+    
+    <!-- 第三方支付账户信息 -->
+    <select id="getData6" resultType="beanToMessage.PayaccountInfoMessage">
+ 		select 
+		t1.tellphone as B040002, -- 账户
+		t.passenger_id as B040003, -- 用户内部ID
+		'01' as B040010, -- 账户类型 01支付宝
+		t.alipay_account_number as B040011,-- 账号
+		'1' as H010003, -- 动作类型 1 创建
+		floor(t.gmt_update/1000) as I010005 -- 动作时间
+		from passenger_account t LEFT JOIN passenger_login t1 on t.passenger_id = t1.passenger_id 
+		where t1.tellphone is not null
+    limit 0,30
+		union all 
+		
+		select 
+		t1.tellphone as B040002, -- 账户
+		t.passenger_id as B040003, -- 用户内部ID
+		'06' as B040010, -- 账户类型 01支付宝
+		t.wechat_account_number as B040011,-- 账号
+		'1' as H010003, -- 动作类型 1 创建
+		floor(t.gmt_update/1000) as I010005 -- 动作时间
+		from passenger_account t LEFT JOIN passenger_login t1 on t.passenger_id = t1.passenger_id 
+		where t1.tellphone is not null
+		limit 0,30
+    </select>
+    
+    <!-- 登录日志 -->
+    <select id="getData7" resultType="beanToMessage.LoginMessage">
+    	SELECT
+		t.login_userName as B040002, -- 账号名
+		t.passenger_id as B040003, -- 用户内部ID
+		UNIX_TIMESTAMP(t.login_lastLoginTime) as F040005, -- 登录时间
+		'02' as H010003, -- 动作类型 02 上线
+		t.equipment_phone_ip as F020004, -- 登录IP地址
+		t.equipment_phone_port as F020006 , -- 登录端口号
+		REPLACE(t.equipment_phone_mac,':','') as C040002, -- 终端mac地址
+		t.tellphone as B020005, -- 登录时的手机号
+		t.equipment_hardware_num as C050001, -- 移动终端 IMEI
+		t.equipment_imsi as B020007, -- 移动终端 IMSI
+		t.login_longitude as F010001, -- 经度  
+		t.login_latitude as F010002, -- 纬度 
+		t.equipment_phone_model as C020011, -- 终端型号
+		t.equipment_phone_sys_version as C020005-- 终端操作系统类型
+		from passenger_login t where t.login_userName is not null;
+    </select>
+</mapper>
