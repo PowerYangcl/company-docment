@@ -348,7 +348,7 @@ CREATE TABLE `goods_standard_ec` (
   `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
   `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
   `goods_id` bigint(20) DEFAULT NULL COMMENT '商品id',
-  `abstract` varchar(255) DEFAULT NULL COMMENT '商品摘要',
+  `abstract_info` varchar(255) DEFAULT NULL COMMENT '商品摘要',
   `label` varchar(255) DEFAULT NULL COMMENT '商品标签',
   `info` varchar(255) DEFAULT NULL COMMENT '商品详细信息',
   `property` varchar(255) DEFAULT NULL COMMENT '商品属性',
