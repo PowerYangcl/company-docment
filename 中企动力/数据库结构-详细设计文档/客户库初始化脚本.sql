@@ -689,6 +689,7 @@ CREATE TABLE `member_base_info` (
   `is_potential` int(11) DEFAULT NULL COMMENT '是否会员。1：会员；2：潜客',
   `phone_province` varchar(255) DEFAULT NULL COMMENT '手机号归属地省份（编码）',
   `phone_city` varchar(255) DEFAULT NULL COMMENT '手机号归属地城市（编码）',
+  `open_card_time` datetime DEFAULT NULL COMMENT '开卡时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员基础信息表';
 
