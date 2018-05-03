@@ -207,6 +207,28 @@ CREATE TABLE `auto_market_point_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='自动化营销节点表';
 
 -- ----------------------------
+-- Table structure for auto_market_point_info_temp
+-- ----------------------------
+DROP TABLE IF EXISTS `auto_market_point_info_temp`;
+CREATE TABLE `auto_market_point_info_temp` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `task_id` bigint(20) DEFAULT NULL COMMENT '任务id',
+  `parent_task_id` bigint(20) DEFAULT NULL COMMENT '父任务id',
+  `point_id` bigint(20) DEFAULT NULL COMMENT '节点id',
+  `parent_point_id` bigint(20) DEFAULT NULL COMMENT '父节点id',
+  `point_info` varchar(2000) DEFAULT NULL COMMENT '节点信息(Json串)',
+  `point_type` int(11) DEFAULT NULL COMMENT '节点类型。1.动作。2.条件。3.时间',
+  `template_id` bigint(20) DEFAULT NULL COMMENT '模板id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='自动化营销节点记录临时表';
+
+-- ----------------------------
 -- Table structure for auto_market_sms_template
 -- ----------------------------
 DROP TABLE IF EXISTS `auto_market_sms_template`;
