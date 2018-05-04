@@ -439,6 +439,7 @@ CREATE TABLE `business_card_info` (
   `md_store` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL COMMENT '分享后链接',
   `user_id` bigint(20) DEFAULT NULL COMMENT '员工id',
+  `share_flag` int(2) DEFAULT '0' COMMENT '是否分享 0否 1是',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='名片表';
 
