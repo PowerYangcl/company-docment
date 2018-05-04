@@ -62,6 +62,7 @@ CREATE TABLE `address_code` (
   `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
   `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
   `name` varchar(255) DEFAULT NULL COMMENT '地区名称',
+  `code` varchar(255) DEFAULT NULL COMMENT '当前节点编码',
   `parent_code` varchar(255) DEFAULT NULL COMMENT '父节点编码',
   `level` int(11) DEFAULT NULL COMMENT '级别。1：国家；2：省份；3：城市',
   PRIMARY KEY (`id`)
