@@ -535,7 +535,7 @@ CREATE TABLE `coupon_send_record` (
   `receive_way` varchar(255) DEFAULT NULL COMMENT '领取途径(weixin，qq，weibo，sms)',
   `coupon_name` varchar(255) DEFAULT NULL COMMENT '优惠券名称',
   `sms_batch` varchar(255) DEFAULT NULL COMMENT '短信群发批次',
-  `coupon_id` bigint(20) DEFAULT NULL,
+  `coupon_template_id` bigint(20) DEFAULT NULL COMMENT '优惠券模板id | coupon_user_defined_template表的主键',
   `limit_price` bigint(20) DEFAULT NULL COMMENT '最低限制金额(核销最低限制单位分)',
   `office_address` varchar(255) DEFAULT NULL COMMENT '办公地址',
   `id_card` varchar(255) DEFAULT NULL COMMENT '身份证号码',
