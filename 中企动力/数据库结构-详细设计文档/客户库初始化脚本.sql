@@ -1066,6 +1066,30 @@ CREATE TABLE `thirdparty_coupon_model` (
 
 
 
+-- ----------------------------
+-- Table structure for auto_market_regular_task
+-- ----------------------------
+DROP TABLE IF EXISTS `auto_market_regular_task`;
+CREATE TABLE `auto_market_regular_task` (
+  `id` BIGINT(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` BIGINT(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` INT(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` BIGINT(20) DEFAULT NULL COMMENT '公司id',
+  `execution_time` DATETIME DEFAULT NULL COMMENT '任务执行时间',
+  `sms_content` VARCHAR(255) DEFAULT NULL COMMENT '发送短信内容',
+  `phone` VARCHAR(255) DEFAULT NULL COMMENT '发送手机号',
+  `task_id` BIGINT(20) DEFAULT NULL COMMENT '自动化任务id',
+  `customer_id` BIGINT(20) DEFAULT NULL COMMENT '会员id',
+  `status` INT(11) DEFAULT '0' COMMENT '执行状态 0未执行 1 已执行',
+  `customer_name` VARCHAR(255) DEFAULT NULL COMMENT '会员名称',
+  `action_id` BIGINT(20) DEFAULT NULL COMMENT '任务执行动作id',
+  `action_type` INT(11) DEFAULT NULL COMMENT '自动化任务动作类型1.短信，2.优惠劵，3.医药',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COMMENT='自动化营销定时任务表';
+
 
 
 
