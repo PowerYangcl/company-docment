@@ -1012,3 +1012,90 @@ CREATE TABLE `sms_send_record` (
   `task_id` bigint(20) DEFAULT NULL COMMENT '自动化营销任务id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='短信发送记录表';
+
+ 
+
+-- ----------------------------
+-- Table structure for thirdparty_coupon
+-- ----------------------------
+DROP TABLE IF EXISTS `thirdparty_coupon`;
+CREATE TABLE `thirdparty_coupon` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `coupon_code` varchar(255) DEFAULT NULL COMMENT '优惠券码',
+  `name` varchar(255) DEFAULT NULL COMMENT '优惠券名称',
+  `face_value` int(11) DEFAULT '0' COMMENT '面值',
+  `limit_price` int(11) DEFAULT '0' COMMENT '优惠券使用最低消费金额',
+  `start_time` datetime DEFAULT NULL COMMENT '优惠券有效期开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '优惠券有效期结束结束',
+  `status` int(2) DEFAULT '0' COMMENT '优惠券状态 0表示未使用 1表示已使用',
+  `model_id` bigint(20) DEFAULT NULL COMMENT '第三方优惠券模板id', 
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='第三方优惠券码表，对应基于第三方优惠券模板表（third_coupon_model，一对多关系）导入的券码';
+
+
+
+-- ----------------------------
+-- Table structure for thirdparty_coupon_model
+-- ----------------------------
+DROP TABLE IF EXISTS `thirdparty_coupon_model`;
+CREATE TABLE `thirdparty_coupon_model` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id', 
+  `name` varchar(255) DEFAULT NULL COMMENT '优惠券名称',
+  `face_value` int(11) DEFAULT '0' COMMENT '面值',
+  `limit_price` int(11) DEFAULT '0' COMMENT '优惠券使用最低消费金额',
+  `start_time` datetime DEFAULT NULL COMMENT '优惠券有效期开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '优惠券有效期结束结束',
+  `status` int(2) DEFAULT '0' COMMENT '优惠券状态 0表示未使用 1表示已使用', 
+  `num` int(11) DEFAULT '0' COMMENT '券数量',
+  `notify_status` int(2) DEFAULT '0' COMMENT '是否通知（0表示未通知 1表示已发送通知）', 
+  `extra` text COMMENT '附加内容',  
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='第三方优惠券模板表，存一条模板';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
