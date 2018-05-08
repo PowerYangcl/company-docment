@@ -1095,7 +1095,30 @@ CREATE TABLE `auto_market_regular_task` (
 
 
 
-
+-- ----------------------------
+-- Table structure for member_report 
+-- 会员报告记录表|调用第三方接口，(如：巨牛ERP)所返回的数据将会插入到这张表内，今天请求的是第三方昨天的数据。
+-- ----------------------------
+DROP TABLE IF EXISTS `member_report`;
+CREATE TABLE `member_report` (
+  `id` BIGINT(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` BIGINT(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` INT(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` BIGINT(20) DEFAULT NULL COMMENT '公司id',
+  `date` varchar(10) DEFAULT NULL COMMENT '今天请求的是第三方昨天的日期，如： 2018-2-16',
+  `store_id` BIGINT(20) DEFAULT '0' COMMENT 'base_store_info表id',
+  `store_name` varchar(255) DEFAULT NULL COMMENT 'base_store_info表name',
+  `create_customer_number` int(11) DEFAULT '0' COMMENT '新增会员',
+  `consume_customer_number` int(11) DEFAULT '0' COMMENT '消费会员',
+  `balance_customer_number` int(11) DEFAULT '0' COMMENT '储值会员',
+  `re_purchase_customer_number` int(11) DEFAULT '0' COMMENT '复购会员',
+  `join_customer_number` int(11) DEFAULT '0' COMMENT '参加活动会员',
+  `entity_create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间，datetime格式',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COMMENT='会员报告记录表';
 
 
 
