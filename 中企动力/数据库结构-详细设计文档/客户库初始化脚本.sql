@@ -495,7 +495,7 @@ CREATE TABLE `coupon_banch_info` (
   `coupon_num` int(11) DEFAULT NULL COMMENT '优惠券派发数量',
   `customer_num` int(11) DEFAULT NULL COMMENT '需要派发的会员数量',
   `send_object_type` int(11) DEFAULT NULL COMMENT '发送对象类型(0全量派发，1分组派发，2导入会员派发)',
-  `group_id` bigint(20) DEFAULT NULL COMMENT '分组id',
+  `group_id` text COMMENT '分组id',
   `batch` int(11) DEFAULT NULL COMMENT '批次号',
   `start_send_time` datetime DEFAULT NULL COMMENT '开始派发时间',
   `end_send_time` datetime DEFAULT NULL COMMENT '派发结束时间',
