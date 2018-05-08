@@ -1057,7 +1057,7 @@ CREATE TABLE `thirdparty_coupon_model` (
   `limit_price` int(11) DEFAULT '0' COMMENT '优惠券使用最低消费金额',
   `start_time` datetime DEFAULT NULL COMMENT '优惠券有效期开始时间',
   `end_time` datetime DEFAULT NULL COMMENT '优惠券有效期结束结束',
-  `status` int(2) DEFAULT '0' COMMENT '优惠券状态 0表示未使用 1表示已使用', 
+  `status` int(2) DEFAULT '0' COMMENT '状态（0未导入 1未派送 2派送中 3派送完毕）', 
   `num` int(11) DEFAULT '0' COMMENT '券数量',
   `notify_status` int(2) DEFAULT '0' COMMENT '是否通知（0表示未通知 1表示已发送通知）', 
   `extra` text COMMENT '附加内容',  
