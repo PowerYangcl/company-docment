@@ -341,6 +341,7 @@ CREATE TABLE `auto_market_user_defined_template` (
   `ex_date_info` varchar(0) DEFAULT NULL COMMENT '时间信息',
   `point_id` bigint(20) DEFAULT NULL COMMENT '对应节点中Action类型的id',
   `job_create` int(2) DEFAULT NULL COMMENT '延迟启动task的状态：0未启动，1已启动',
+  `template_id` bigint(20) NOT NULL COMMENT 'auto_market_template表id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='自动化营销模板任务表';
 
@@ -1092,9 +1093,6 @@ CREATE TABLE `auto_market_regular_task` (
 
 
 
-
-
-
 -- ----------------------------
 -- Table structure for member_report 
 -- 会员报告记录表|调用第三方接口，(如：巨牛ERP)所返回的数据将会插入到这张表内，今天请求的是第三方昨天的数据。
@@ -1122,19 +1120,99 @@ CREATE TABLE `member_report` (
 
 
 
+-- ----------------------------
+-- Table structure for activity_submit_record 
+-- 用户参加活动记录表（用户参加一次活动表增加一条记录）
+-- ----------------------------
+DROP TABLE IF EXISTS `activity_submit_record`;
+CREATE TABLE `activity_submit_record` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `activity_name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `activity_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '活动id',
+  `customer_phone` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '会员手机号码',
+  `customer_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '会员id',
+  `customer_name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '会员名称',
+  `card_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '名片id',
+  `channel_type` int(255) NOT NULL DEFAULT '0' COMMENT '渠道类型(二维码营销)',
+  `coupon_batch` varchar(255) CHARACTER SET utf16le NOT NULL DEFAULT '0' COMMENT '注券批次',
+  `sms_batch` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '0' COMMENT '短信群发批次',
+  `task_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '自动化营销任务id',
+  `longitude` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '经度',
+  `latitude` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '纬度',
+  `province_id` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '省份id',
+  `city_id` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '城市id',
+  `area_id` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '区域id',
+  `is_new_flag` int(11) NOT NULL DEFAULT '0' COMMENT '标记会员是否为新会员',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='用户参加活动记录表';
 
 
 
+-- ----------------------------
+-- Table structure for sys_role_attribute
+-- 角色属性关系表
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_attribute`;
+CREATE TABLE `sys_role_attribute` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `role_id` bigint(20) COMMENT '角色id',
+  `attribute_id` bigint(20) COMMENT '属性id', 
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='角色属性关系表';
 
 
 
+-- ----------------------------
+-- Table structure for sys_attribute
+-- 数据属性表
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_attribute`;
+CREATE TABLE `sys_attribute` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `attribute_name` varchar(255) CHARACTER SET utf8 COMMENT '属性名称',
+  `attribute_seat` varchar(255) CHARACTER SET utf8 COMMENT '属性位置(属性所在表)',
+  `attribute_key` varchar(255) CHARACTER SET utf8 COMMENT '属性键(属性所在表中的字段)',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='数据属性表';
 
 
 
-
-
-
-
+-- ----------------------------
+-- Table structure for sys_user_attribute
+-- 用户特征数据表
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user_attribute`;
+CREATE TABLE `sys_user_attribute` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `user_id` bigint(20) COMMENT '用户id',
+  `attribute_value` varchar(255) CHARACTER SET utf8 COMMENT '属性值(对应一组数据权限)',
+  `attribute_id` bigint(20) COMMENT '属性id',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='用户特征数据表';
 
 
 

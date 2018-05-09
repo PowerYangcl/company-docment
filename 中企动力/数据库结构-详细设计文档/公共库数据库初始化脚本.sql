@@ -133,6 +133,7 @@ CREATE TABLE `base_goods_medicine_dosage` (
 DROP TABLE IF EXISTS `company_department`;
 CREATE TABLE `company_department` (
   `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
@@ -143,6 +144,7 @@ CREATE TABLE `company_department` (
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   `parent_dept_id` bigint(20) DEFAULT NULL COMMENT '父部门编码id',
   `leader_id` bigint(20) DEFAULT NULL COMMENT '领导ID',
+  `company_type` int(11) DEFAULT '0' COMMENT '部门类型 1、机构 2、团队',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='部门表';
 
@@ -443,6 +445,7 @@ CREATE TABLE `sms_public_send_record` (
 DROP TABLE IF EXISTS `sms_use_record`;
 CREATE TABLE `sms_use_record` (
   `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
@@ -488,6 +491,7 @@ CREATE TABLE `sys_authority` (
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
   `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
@@ -531,6 +535,7 @@ CREATE TABLE `sys_role_authority` (
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
   `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
@@ -564,6 +569,7 @@ CREATE TABLE `sys_user` (
   `is_first_login` int(11) DEFAULT NULL COMMENT '用来表示初次登陆，0表示初次，1表示非初次',
   `access_token` varchar(255) DEFAULT NULL COMMENT 'access_token',
   `is_super` int(11) DEFAULT '0'  COMMENT '是否事超级管理员  0不是  1是',
+  `user_identity` int(11) DEFAULT '0'  COMMENT '业务权限标记|用户业务身份 1个人、2管理',  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
