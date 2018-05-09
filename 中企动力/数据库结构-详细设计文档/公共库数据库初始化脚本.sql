@@ -177,7 +177,7 @@ CREATE TABLE `company_info` (
   `sms_num` int(11) DEFAULT NULL COMMENT '短信充值数量',
   `industry_type` int(11) DEFAULT NULL COMMENT '行业标识 ：1  医药行业',
   `sms_recharge` int(11) DEFAULT NULL COMMENT '标记用户是否进行过充值 0没充过 1充过',
-  `create_sequence_code` varchar(2) DEFAULT NULL COMMENT '公司创建顺序码 10位数字+大小写52位字母组合成',
+  `create_sequence_code` int(4) DEFAULT NULL COMMENT '公司创建顺序码 数字',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='企业信息表';
 
