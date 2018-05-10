@@ -16,3 +16,12 @@
 12、ICardActivityRpcService-->queryCardActivityList(String tenantId,long id);
 13、ICardActivityRpcService-->queryCardOperationList(String tenantId,long id);
 14、ICardActivityRpcService-->selectByCardIdActivityId(String tenantId,Integer card_id,Integer activity_id);
+
+
+
+1.ActivityStatisticsService--->countClickByTransmitTag()//根据转发标记统计点击数量
+
+2.CouponStatisticsService--->countReceiveByTransmitTag()//根据转发标记统计优惠券发送数量
+
+
+
