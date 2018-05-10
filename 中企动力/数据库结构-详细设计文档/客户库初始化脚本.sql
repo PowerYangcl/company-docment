@@ -371,6 +371,7 @@ CREATE TABLE `base_store_info` (
   `city_id` int(11) DEFAULT NULL COMMENT '城市',
   `area_id` int(11) DEFAULT NULL COMMENT '区域',
   `pwd` varchar(255) DEFAULT NULL COMMENT '门店密码',
+  `store_code` varchar(255) DEFAULT NULL COMMENT '第三方同步的门店编码|比如瑞恩门店编号',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='门店表';
 
