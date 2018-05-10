@@ -99,7 +99,8 @@ CREATE TABLE `activity_browse_record` (
   `province_id` varchar(20) DEFAULT NULL COMMENT '省份id',
   `city_id` varchar(20) DEFAULT NULL COMMENT '城市id',
   `area_id` varchar(20) DEFAULT NULL COMMENT '区域id',
-  `task_id`  bigint(20) DEFAULT NULL COMMENT '任务id',
+  `task_id`  bigint(20) DEFAULT NULL COMMENT '任务id', 
+  `transmit_tag` int(2) DEFAULT NULL COMMENT '0表示未转发，即一次人脉 1表示转发 即二次人脉',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='活动浏览记录';
 
