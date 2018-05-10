@@ -531,7 +531,7 @@ CREATE TABLE `coupon_send_record` (
   `type` int(11) DEFAULT NULL COMMENT '优惠券类型',
   `is_used` int(11) DEFAULT NULL COMMENT '标记优惠券是否使用  0表示未使用 1表示已使用',
   `using_time` datetime DEFAULT NULL COMMENT '优惠券使用时间',
-  `is_forward` int(11) DEFAULT NULL COMMENT '标记是否转发|转发，0未转发',
+  `is_forward` int(11) DEFAULT NULL COMMENT '标记是否转发|转发，0未转发。旧代码注释：0表示未转发，即一次人脉 1表示转发 即二次人脉',
   `activity_id` bigint(20) DEFAULT NULL COMMENT '活动id',
   `activity_name` varchar(255) DEFAULT NULL COMMENT '活动名称',
   `customer_id` bigint(20) DEFAULT NULL,
