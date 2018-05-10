@@ -1157,6 +1157,89 @@ CREATE TABLE `activity_submit_record` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='用户参加活动记录表';
 
 
+-- ----------------------------
+-- Table structure for activity_success_page 
+-- 活动参与成功提示页表
+-- ----------------------------
+DROP TABLE IF EXISTS `activity_success_page`;
+CREATE TABLE `activity_success_page` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `activity_id` bigint(20) NOT NULL DEFAULT '0' COMMENT 'activity_base_info表id',
+  `success_tip` varchar(255) NOT NULL DEFAULT '' COMMENT '参加活动成功提示文字',
+  `success_description` varchar(255) NOT NULL DEFAULT '' COMMENT '参加活动成功描述 ',
+  `list_button_text` varchar(255) NOT NULL DEFAULT '' COMMENT '查看优惠券列表按钮的文字提示',
+  `is_show_coupon_list` int(11) NOT NULL DEFAULT '0' COMMENT '是否显示查看优惠券按钮标记（0表示不显示 1表示显示）',
+  `recommend_activity_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '推荐活动的id集合（，分割）',
+  `is_show_recommend_activity` int(11) NOT NULL DEFAULT '0' COMMENT '是否显示推荐活动标记（0不显示 1显示）',
+  `is_show_qrcode` int(11) NOT NULL DEFAULT '0' COMMENT '是否显示二维码（0不显示 1显示）',
+  `qrcode_tip` varchar(255) NOT NULL DEFAULT '' COMMENT '二维码上方的提示文本',
+  `bg_pic` varchar(255) NOT NULL DEFAULT '' COMMENT '背景图片地址',
+  `qrcode_pic` varchar(255) NOT NULL DEFAULT '' COMMENT '二维码图片地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='活动参与成功提示页表';
+
+
+-- ----------------------------
+-- Table structure for business_card_activity 
+-- 名片活动关系表
+-- ----------------------------
+DROP TABLE IF EXISTS `business_card_activity`;
+CREATE TABLE `business_card_activity` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `activity_id` bigint(20) NOT NULL DEFAULT '0' COMMENT 'activity_base_info表id',
+  `card_id` bigint(20) DEFAULT '0' COMMENT 'business_card_info 表id',
+  `type` int(11) DEFAULT '0' COMMENT '用于区分类型（2表示活动 1表示业务）',
+  `business_tag` int(11) DEFAULT '1' COMMENT '业务状态1 代表员工有有权限可以更改2 代表员工没有权限不可更改',
+  `activity_tag` int(11) DEFAULT '0' COMMENT '名片绑定的活动是否允许员工设置（0不允许 1允许）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='名片活动关系表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
