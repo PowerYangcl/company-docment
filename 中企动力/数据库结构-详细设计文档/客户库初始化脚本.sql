@@ -1265,8 +1265,23 @@ CREATE TABLE `coupon_expire_task` (
 
 
 
-
-
+-- ----------------------------
+-- Table structure for relation_activity_coupon_template 
+-- 活动优惠券模板关联表（活动绑定的优惠券模板）
+-- ----------------------------
+DROP TABLE IF EXISTS `relation_activity_coupon_template`;
+CREATE TABLE `relation_activity_coupon_template` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `activity_id` bigint(20) DEFAULT '0' COMMENT '活动id（activity_base_info id）',
+  `coupon_template_id` bigint(20) DEFAULT '0' COMMENT '优惠券模板id（对应coupon_user_defined_template表id）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='活动优惠券模板关联表';
 
 
 
