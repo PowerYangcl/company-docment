@@ -1209,11 +1209,29 @@ CREATE TABLE `business_card_activity` (
 
 
 
-
-
-
-
-
+-- ----------------------------
+-- Table structure for coupon_banch_browse_record 
+-- 批量注券发送短信链接点击浏览记录表
+-- ----------------------------
+DROP TABLE IF EXISTS `coupon_banch_browse_record`;
+CREATE TABLE `coupon_banch_browse_record` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `customer_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '会员id',
+  `coupon_batch` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '0' COMMENT '短信群发批次',
+  `task_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '自动化营销任务id',
+  `longitude` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '经度',
+  `latitude` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '纬度',
+  `province_id` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '省份id',
+  `city_id` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '城市id',
+  `area_id` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '区域id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='批量注券发送短信链接点击浏览记录表';
 
 
 
