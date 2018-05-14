@@ -1236,8 +1236,30 @@ CREATE TABLE `coupon_banch_browse_record` (
 
 
 
-
-
+-- ----------------------------
+-- Table structure for coupon_expire_task 
+-- 优惠券到期提醒短信发送任务表（每天定时扫描表，发送提醒短信）
+-- ----------------------------
+DROP TABLE IF EXISTS `coupon_expire_task`;
+CREATE TABLE `coupon_expire_task` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
+  `coupon_batch` varchar(255) DEFAULT '0' COMMENT '注券批次号',
+  `customer_id` bigint(20) DEFAULT '0' COMMENT 'member_base_info  表id',
+  `activity_id` bigint(20) DEFAULT '0' COMMENT '活动id ',
+  `mobile` varchar(20) DEFAULT '' COMMENT '手机号码',
+  `coupon_code` varchar(20) DEFAULT '' COMMENT '优惠券码',
+  `coupon_id` bigint(20) DEFAULT '0' COMMENT '优惠券id',
+  `sms_content` varchar(255) DEFAULT '' COMMENT '需要发送的短信内容',
+  `status` int(10) DEFAULT '0' COMMENT '任务状态 0未执行  1已执行',
+  `execution_time` datetime DEFAULT NULL COMMENT '任务执行时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='优惠券到期提醒短信发送任务表（每天定时扫描表，发送提醒短信）';
 
 
 
