@@ -672,7 +672,25 @@ CREATE TABLE `company_sms_autograph` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='商家短信签名表';
 
 
-
+-- ----------------------------
+-- Table structure for email_pubilc_send_record
+-- ----------------------------
+DROP TABLE IF EXISTS `email_pubilc_send_record`;
+CREATE TABLE `email_pubilc_send_record` (
+  `id` BIGINT(20) NOT NULL COMMENT '主键id',
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` TIMESTAMP NULL DEFAULT NULL COMMENT '最近更新时间',
+  `create_user_id` VARCHAR(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人id',
+  `delete_time` DATETIME DEFAULT NULL COMMENT '删除时间',
+  `is_deleted` INT(11) DEFAULT NULL COMMENT '删除标记 0未删除，1已删除',
+  `cid` BIGINT(20) DEFAULT NULL COMMENT '公司id',
+  `send_email` VARCHAR(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮件发送方',
+  `receive_email` VARCHAR(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮件接收方',
+  `title` VARCHAR(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮件标题',
+  `content` LONGTEXT COLLATE utf8mb4_bin COMMENT '邮件正文内容',
+  `send_from` VARCHAR(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮件发送服务商',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
 

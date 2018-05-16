@@ -163,7 +163,7 @@ CREATE TABLE `activity_user_defined_template` (
   `cid` bigint(20) DEFAULT NULL COMMENT '公司id',
   `bg_color` varchar(10) DEFAULT NULL COMMENT '背景颜色',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
-  `defined_text` varchar(255) DEFAULT NULL COMMENT '标记模板类型',
+  `type` varchar(255) DEFAULT NULL COMMENT '标记模板类型',
   `pic_url` text COMMENT '相册模板的图片地址',
   `text_info` text COMMENT '编辑的文本内容',
   `address_info` varchar(255) DEFAULT NULL COMMENT '地址信息',
