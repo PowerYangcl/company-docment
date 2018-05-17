@@ -555,6 +555,13 @@ CREATE TABLE `coupon_send_record` (
   `city_id` varchar(20) DEFAULT NULL COMMENT '城市id',
   `area_id` varchar(20) DEFAULT NULL COMMENT '区域id',
   `coupon_model_type` int(11) DEFAULT NULL COMMENT '优惠券模板类型(0表示系统优惠券类型，1表示第三方优惠券模板)',
+  `action_user_id` bigint(20) DEFAULT NULL COMMENT '核销操作员id',
+  `consumption_amount` int(11) DEFAULT NULL COMMENT '核销的消费金额',
+  `consumption_preference` varchar(255) DEFAULT NULL COMMENT '用户消费偏好',
+  `write_off_time` datetime DEFAULT NULL COMMENT '核销时间',
+  `reverse_reason` varchar(255) DEFAULT NULL COMMENT '反核销原因',
+  `reverse_time` datetime DEFAULT NULL COMMENT '反核销时间',
+  `reverse_user_id` bigint(20) DEFAULT NULL COMMENT '反核销用户id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='优惠劵发送记录表 ';
 
@@ -1282,6 +1289,99 @@ CREATE TABLE `relation_activity_coupon_template` (
   `coupon_template_id` bigint(20) DEFAULT '0' COMMENT '优惠券模板id（对应coupon_user_defined_template表id）',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='活动优惠券模板关联表';
+
+
+
+-- ----------------------------
+-- Table structure for relation_activity_store 
+-- 活动与门店的关联表
+-- ----------------------------
+DROP TABLE IF EXISTS `relation_activity_store`;
+CREATE TABLE `relation_activity_store` (
+  `id` bigint(20) NOT NULL COMMENT 'mycat生成唯一id',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建人id',
+  `delete_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
+  `is_deleted` int(11) DEFAULT '0' COMMENT '删除标记',
+  `cid` bigint(20) DEFAULT '0' COMMENT '公司id',
+  `activity_id` bigint(20) DEFAULT '0' COMMENT '活动id（activity_base_info id）',
+  `store_id` bigint(20) DEFAULT '0' COMMENT '门店id（对应base_store_info表id）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='活动与门店的关联表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
