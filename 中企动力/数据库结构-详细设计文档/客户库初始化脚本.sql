@@ -980,7 +980,7 @@ CREATE TABLE `sms_mass_info` (
   `send_status` int(11) DEFAULT NULL COMMENT '派发状态(0未提交审核，1派送成功，2审核中 3派送中 4审核未通过 5派发失败 6审核通过)',
   `send_num` int(11) DEFAULT NULL COMMENT '发送会员数量',
   `send_object_type` int(11) DEFAULT NULL COMMENT '发送对象类型(0全量派发，1分组派发，2导入会员派发) ''',
-  `group_id` bigint(20) DEFAULT NULL COMMENT '会员分组id',
+  `group_ids` text COMMENT '会员分组id集合,逗号分隔的字符串',
   `non_cause` varchar(1000) DEFAULT NULL COMMENT '审核不通过原因',
   `type` int(11) DEFAULT NULL COMMENT '创建类型(0表示自身创建 1表示自动化营销中创建的)',
   `template_id` bigint(20) DEFAULT NULL COMMENT '自动化营销模板id''',
