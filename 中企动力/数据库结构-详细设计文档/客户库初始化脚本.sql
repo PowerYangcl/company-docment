@@ -1118,7 +1118,7 @@ CREATE TABLE `member_report` (
   `delete_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '删除时间',
   `is_deleted` INT(11) DEFAULT '0' COMMENT '删除标记',
   `cid` BIGINT(20) DEFAULT NULL COMMENT '公司id',
-  `date` varchar(10) DEFAULT NULL COMMENT '今天请求的是第三方昨天的日期，如： 2018-2-16',
+  `crm_date` varchar(10) DEFAULT NULL COMMENT '今天请求的是第三方昨天的日期，如： 2018-02-16',
   `store_id` BIGINT(20) DEFAULT '0' COMMENT 'base_store_info表id',
   `store_name` varchar(255) DEFAULT NULL COMMENT 'base_store_info表name',
   `create_customer_number` int(11) DEFAULT '0' COMMENT '新增会员',
