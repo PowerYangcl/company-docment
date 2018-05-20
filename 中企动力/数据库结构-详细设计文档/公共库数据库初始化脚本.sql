@@ -84,7 +84,7 @@ CREATE TABLE `auto_market_point_info_public` (
   `point_id` bigint(20) DEFAULT NULL COMMENT '节点id',
   `parent_point_id` bigint(20) DEFAULT NULL COMMENT '父节点id',
   `point_info` varchar(2000) DEFAULT NULL COMMENT '节点信息(Json串)',
-  `point_type` int(11) DEFAULT NULL COMMENT '节点类型。1.动作。2.条件。3.时间',
+  `point_type` int(11) DEFAULT NULL COMMENT '节点类型。1.条件。2.时间。3.动作',
   `template_id` bigint(20) DEFAULT NULL COMMENT '模板id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='自动化营销节点信息表';
