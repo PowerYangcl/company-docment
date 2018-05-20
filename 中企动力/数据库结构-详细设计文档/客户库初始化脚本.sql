@@ -548,7 +548,7 @@ CREATE TABLE `coupon_send_record` (
   `id_card` varchar(255) DEFAULT NULL COMMENT '身份证号码',
   `card_id` bigint(20) DEFAULT NULL,
   `channel_type` int(11) DEFAULT NULL COMMENT '渠道类型(二维码营销)',
-  `coupon_batch` varchar(255) DEFAULT NULL COMMENT '注券批次号',
+  `coupon_batch` bigint(20) DEFAULT NULL COMMENT '注券批次号',
   `contacted` int(11) DEFAULT '0' COMMENT '是否联系(0：未联系；1：已联系)',
   `longitude` varchar(20) DEFAULT NULL COMMENT '经度',
   `latitude` varchar(20) DEFAULT NULL COMMENT '纬度',
