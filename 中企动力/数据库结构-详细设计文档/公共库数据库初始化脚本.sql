@@ -507,6 +507,7 @@ CREATE TABLE `sys_role` (
   `operation` int(11) DEFAULT '0' DEFAULT NULL COMMENT '权限id 0菜单权限 1按钮权限',
   `product_id` bigint(20) DEFAULT NULL COMMENT '对接系统的id',
   `product_role_id` bigint(20) DEFAULT NULL COMMENT '对接系统的角色id',
+  `external_authority` varchar(255) DEFAULT NULL COMMENT '外部应用权限(CRM权限、门店APP权限)',  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
 
