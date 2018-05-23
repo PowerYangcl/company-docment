@@ -248,7 +248,7 @@ CREATE TABLE `auto_market_sms_template` (
   `content` varchar(512) DEFAULT NULL COMMENT '模板内容',
   `type` varchar(255) DEFAULT NULL COMMENT '模板类型(sales_service售后服务，smart_market智能营销)',
   `content_type` varchar(255) DEFAULT NULL COMMENT '模板内容类型(buy_medicine_remind购药提醒，useTaboo使用禁忌，orderDesc订单描述)',
-  `autograph_id` int(11) DEFAULT NULL COMMENT '短信签名id',
+  `autograph_id` bigint(20) DEFAULT NULL COMMENT '短信签名id',
   `is_show` int(11) DEFAULT NULL COMMENT '标记是否再列表显示(1显示，2不显示)',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='自动化营销短信模板';
