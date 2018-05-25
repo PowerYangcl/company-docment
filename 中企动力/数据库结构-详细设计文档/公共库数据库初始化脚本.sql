@@ -144,6 +144,7 @@ CREATE TABLE `company_department` (
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   `parent_dept_id` bigint(20) DEFAULT NULL COMMENT '父部门编码id',
   `leader_id` bigint(20) DEFAULT NULL COMMENT '领导ID',
+  `leader_name` varchar(255) DEFAULT NULL COMMENT '领导名称',
   `company_type` int(11) DEFAULT '0' COMMENT '部门类型 1、机构 2、团队',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='部门表';
