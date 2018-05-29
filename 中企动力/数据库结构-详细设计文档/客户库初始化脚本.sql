@@ -39,7 +39,7 @@ CREATE TABLE `activity_base_info` (
   `title` varchar(255) DEFAULT '' COMMENT '标题',
   `content` varchar(255) DEFAULT '' COMMENT '文本',
   `pic` varchar(255) DEFAULT '' COMMENT '分享后url',
-  `status` int(11) DEFAULT '0' COMMENT '状态、启用1、停用0',
+  `status` int(11) DEFAULT '0' COMMENT '状态：启用1、停用0|针对活动才生效',
   `share_channel` varchar(255) DEFAULT '' COMMENT '分享渠道：weixin、qq、weibo',
   `model_id` bigint(20) DEFAULT '0' COMMENT '模板id',
   `head_pic` varchar(255) DEFAULT '' COMMENT '列表页缩略图',
