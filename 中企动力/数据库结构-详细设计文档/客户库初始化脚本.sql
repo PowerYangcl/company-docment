@@ -450,6 +450,8 @@ CREATE TABLE `business_card_info` (
   `motto` varchar(512) DEFAULT NULL COMMENT '座右铭', 
   `belong_store_id` bigint(20) default '0' comment '所属门店id', 
   `belong_department_id` bigint(20) default '0' comment '所属部门id', 
+  `business_tag` int(11) DEFAULT '1' COMMENT '业务状态1 代表员工有有权限可以更改2 代表员工没有权限不可更改',
+  `activity_tag` int(11) DEFAULT '0' COMMENT '名片绑定的活动是否允许员工设置（0不允许 1允许）',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='名片表';
 
@@ -1222,9 +1224,7 @@ CREATE TABLE `business_card_activity` (
   `cid` bigint(20) DEFAULT '0' COMMENT '公司id',
   `activity_id` bigint(20) NOT NULL DEFAULT '0' COMMENT 'activity_base_info表id',
   `card_id` bigint(20) DEFAULT '0' COMMENT 'business_card_info 表id',
-  `type` int(11) DEFAULT '0' COMMENT '用于区分类型（2表示活动 1表示业务）',
-  `business_tag` int(11) DEFAULT '1' COMMENT '业务状态1 代表员工有有权限可以更改2 代表员工没有权限不可更改',
-  `activity_tag` int(11) DEFAULT '0' COMMENT '名片绑定的活动是否允许员工设置（0不允许 1允许）',
+  `type` int(11) DEFAULT '0' COMMENT '用于区分类型（2表示活动 1表示业务）', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='名片活动关系表';
 
