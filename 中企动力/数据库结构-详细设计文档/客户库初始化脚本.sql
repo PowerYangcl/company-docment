@@ -67,7 +67,8 @@ CREATE TABLE `activity_base_info` (
   `distinction` int(11) DEFAULT '0' COMMENT '标记是活动还是业务', 
   `expire_reminder_content` varchar(255) DEFAULT '' COMMENT '优惠券到期提醒发送的短信内容',
   `sms_content` varchar(255) DEFAULT '' COMMENT '参加活动发送的短信内容', 
-  
+  `belong_store_id` bigint(20) default '0' comment '所属门店id', 
+  `belong_department_id` bigint(20) default '0' comment '所属部门id',     
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='活动表';
 
@@ -447,6 +448,8 @@ CREATE TABLE `business_card_info` (
   `user_id` bigint(20) DEFAULT '0' COMMENT '员工id',
   `share_flag` int(2) DEFAULT '0' COMMENT '是否分享 0否 1是',
   `motto` varchar(512) DEFAULT NULL COMMENT '座右铭', 
+  `belong_store_id` bigint(20) default '0' comment '所属门店id', 
+  `belong_department_id` bigint(20) default '0' comment '所属部门id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='名片表';
 
@@ -563,6 +566,8 @@ CREATE TABLE `coupon_send_record` (
   `reverse_reason` varchar(255) DEFAULT '' COMMENT '反核销原因',
   `reverse_time` datetime DEFAULT NULL COMMENT '反核销时间',
   `reverse_user_id` bigint(20) DEFAULT '0' COMMENT '反核销用户id',
+  `belong_store_id` bigint(20) default '0' comment '所属门店id', 
+  `belong_department_id` bigint(20) default '0' comment '所属部门id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='优惠劵发送记录表 ';
 
@@ -636,6 +641,7 @@ CREATE TABLE `goods_scan_record` (
   `operate_user_id` bigint(20) DEFAULT '0' COMMENT '操作员',
   `goods_name` varchar(255) DEFAULT '' COMMENT '商品名称',
   `log_type` int(11) DEFAULT '0' COMMENT '日志类型 0 扫码  1纠错',
+  `belong_department_id` bigint(20) default '0' comment '所属部门id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品扫码记录表';
 
@@ -704,7 +710,8 @@ CREATE TABLE `member_base_info` (
   `is_potential` int(11) DEFAULT '0' COMMENT '是否会员。1：会员；2：潜客',
   `phone_province` varchar(255) DEFAULT '' COMMENT '手机号归属地省份（编码）',
   `phone_city` varchar(255) DEFAULT '' COMMENT '手机号归属地城市（编码）',
-  `open_card_time` datetime DEFAULT NULL COMMENT '开卡时间',
+  `open_card_time` datetime DEFAULT NULL COMMENT '开卡时间', 
+  `belong_department_id` bigint(20) DEFAULT '0' COMMENT '所属部门id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员基础信息表';
 
@@ -817,6 +824,7 @@ CREATE TABLE `order_info` (
   `pay_price` int(11) DEFAULT '0' COMMENT '支付金额（单位分）',
   `pay_time` datetime DEFAULT NULL COMMENT '支付时间',
   `erp_sps_synch` int(11) DEFAULT '0' COMMENT '是否和erp进行过同步 0表示未同步 1表示已同步',
+  `belong_store_id` bigint(20) default '0' comment '所属门店id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
 
@@ -840,7 +848,7 @@ CREATE TABLE `order_pay_detail` (
   `result_msg` varchar(255) DEFAULT '' COMMENT '业务描述',
   `error_code` varchar(255) DEFAULT '' COMMENT '错误码',
   `error_msg` varchar(255) DEFAULT '' COMMENT '错误描述',
-  `openid` varchar(32) DEFAULT NULL COMMENT 'OPENID| ''微信用户标识''',
+  `openid` varchar(32) DEFAULT NULL COMMENT 'OPENID| 微信用户标识',
   `is_subscribe` varchar(10) DEFAULT NULL COMMENT '是否关注',
   `trade_type` varchar(10) DEFAULT NULL COMMENT '交易类型',
   `bank_type` varchar(255) DEFAULT '' COMMENT '付款银行',
@@ -868,6 +876,8 @@ CREATE TABLE `order_pay_detail` (
   `refund_no` varchar(255) DEFAULT '' COMMENT '退款编号',
   `refund_id` varchar(255) DEFAULT '' COMMENT '退款id',
   `refund_fee` varchar(255) DEFAULT '' COMMENT '退款金额（单位分）',
+  `belong_store_id` bigint(20) default '0' comment '所属门店id', 
+  `belong_department_id` bigint(20) default '0' comment '所属部门id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单支付明细';
 
@@ -906,6 +916,8 @@ CREATE TABLE `qrcode_info` (
   `link_url` varchar(255) DEFAULT '' COMMENT '链接地址',
   `bind_info` varchar(255) DEFAULT '' COMMENT '绑定的信息：员工id、渠道名称',
   `code_info` varchar(255) DEFAULT '' COMMENT '二维码信息',
+  `belong_store_id` bigint(20) default '0' comment '所属门店id', 
+  `belong_department_id` bigint(20) default '0' comment '所属部门id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='二维码信息';
 
@@ -987,11 +999,12 @@ CREATE TABLE `sms_mass_info` (
   `activity_url` varchar(255) DEFAULT '' COMMENT '活动链接',
   `send_status` int(11) DEFAULT '0' COMMENT '派发状态(0未提交审核，1派送成功，2审核中 3派送中 4审核未通过 5派发失败 6审核通过)',
   `send_num` int(11) DEFAULT '0' COMMENT '发送会员数量',
-  `send_object_type` int(11) DEFAULT '0' COMMENT '发送对象类型(0全量派发，1分组派发，2导入会员派发) ''',
+  `send_object_type` int(11) DEFAULT '0' COMMENT '发送对象类型(0全量派发，1分组派发，2导入会员派发) ',
   `groupids` text COMMENT '会员分组id集合,逗号分隔的字符串',
   `non_cause` varchar(1000) DEFAULT NULL COMMENT '审核不通过原因',
   `type` int(11) DEFAULT '0' COMMENT '创建类型(0表示自身创建 1表示自动化营销中创建的)',
-  `template_id` bigint(20) DEFAULT '0' COMMENT '自动化营销模板id''',
+  `template_id` bigint(20) DEFAULT '0' COMMENT '自动化营销模板id',
+  `belong_department_id` bigint(20) default '0' comment '所属部门id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='短信营销批次';
 
