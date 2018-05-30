@@ -703,7 +703,7 @@ CREATE TABLE `member_base_info` (
   `qq` varchar(255) DEFAULT '' COMMENT 'qq号',
   `remarks` varchar(255) DEFAULT '' COMMENT '备注',
   `source` varchar(255) DEFAULT '' COMMENT '来源',
-  `store_id` varchar(255) DEFAULT '' COMMENT '门店id',
+  `store_id` bigint(20) DEFAULT '0' COMMENT '门店id',
   `store_name` varchar(255) DEFAULT '' COMMENT '门店名称',
   `tag` varchar(255) DEFAULT '' COMMENT '标签',
   `wechat` varchar(255) DEFAULT '' COMMENT '微信',
