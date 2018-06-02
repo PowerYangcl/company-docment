@@ -345,8 +345,8 @@ CREATE TABLE `auto_market_user_defined_template` (
   `ex_date_type` int(2) DEFAULT NULL COMMENT '时间规则：1立即，2自定义、3生日、4之后、5使用时间',
   `ex_date_info` varchar(0) DEFAULT NULL COMMENT '时间信息',
   `point_id` bigint(20) DEFAULT '0' COMMENT '对应节点中Action类型的id',
-  `job_create` int(2) DEFAULT NULL COMMENT '延迟启动task的状态：0未启动，1已启动',
-  `template_id` bigint(20) NOT NULL COMMENT 'auto_market_template表id', 
+  `job_create` int(2) DEFAULT '0' COMMENT '延迟启动task的状态：0未启动，1已启动',
+  `template_id` bigint(20) NOT '0' COMMENT 'auto_market_template表id', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='自动化营销模板任务表';
 
