@@ -409,7 +409,7 @@ CREATE TABLE `business_card_browse_record` (
   `browse_ip` varchar(255) DEFAULT '' COMMENT '访问ip',
   `open_way` varchar(255) DEFAULT '' COMMENT '打开渠道：weixin、qq、weibo',
   `card_id` bigint(20) DEFAULT '0' COMMENT '名片id',
-  `open_id` bigint(20) DEFAULT '0' COMMENT '酷客公众号id',
+  `open_id` varchar(255) DEFAULT '' COMMENT '酷客公众号id',
   `longitude` varchar(255) DEFAULT '' COMMENT '经度',
   `latitude` varchar(255) DEFAULT '' COMMENT '维度',
   `province_id` varchar(20) DEFAULT NULL COMMENT '省份id',
