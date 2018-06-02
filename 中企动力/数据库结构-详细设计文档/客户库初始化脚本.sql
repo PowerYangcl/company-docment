@@ -1168,7 +1168,7 @@ CREATE TABLE `activity_submit_record` (
   `customer_name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '会员名称',
   `card_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '名片id',
   `channel_type` bigint(20) NOT NULL DEFAULT '0' COMMENT '渠道类型(二维码营销)',
-  `coupon_batch` bigint(20) CHARACTER SET utf16le NOT NULL DEFAULT '0' COMMENT '注券批次',
+  `coupon_batch` bigint(20) NOT NULL DEFAULT '0' COMMENT '注券批次',
   `sms_batch` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '0' COMMENT '短信群发批次',
   `task_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '自动化营销任务id',
   `longitude` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '经度',
